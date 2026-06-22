@@ -46,7 +46,7 @@ The **pre-processed arrays** used in this study (`X_nc_data.npy`, `Y_nc_data.npy
 model outputs** (`arrays_01deg.npz`) and the **trained model weights** (`checkpoints_highres/`) are
 too large for GitHub and are archived on **Zenodo**:
 
-> **DOI: 10.5281/zenodo.XXXXXXX**  *(replace with your Zenodo DOI after upload)*
+> **DOI: [10.5281/zenodo.20801025](https://doi.org/10.5281/zenodo.20801025)**
 
 After downloading, set the data paths at the top of `src/downscaling_highres.py`
 (`X_PATH`, `Y_PATH`) and place the weights in a `checkpoints_highres/` directory.
