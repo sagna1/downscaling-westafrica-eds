@@ -48,27 +48,39 @@ too large for GitHub and are archived on **Zenodo**:
 
 > **DOI: [10.5281/zenodo.20801025](https://doi.org/10.5281/zenodo.20801025)**
 
-After downloading, set the data paths at the top of `src/downscaling_highres.py`
-(`X_PATH`, `Y_PATH`) and place the weights in a `checkpoints_highres/` directory.
+The small files needed to run the scripts (`results/norm_stats.npz`, the channel-wise
+normalisation statistics, and `results/channel_importance_highres.csv`, the permutation-importance
+table) are **already included in this repository**.
+
+All paths in the scripts resolve **automatically** relative to the repository, so no editing is
+required. From Zenodo you only need to place the large files yourself:
+
+- put `arrays_01deg.npz` in `results/` (enables the figure and table scripts);
+- unzip `weights.zip` into `checkpoints_highres/` (only needed to re-run the networks).
+
+Optional environment variables let you point elsewhere without editing the code:
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `CKPT_DIR` | `<repo>/checkpoints_highres` | location of the trained `*.pth` weights |
+| `X_PATH` / `Y_PATH` | NFS paths in `src/downscaling_highres.py` | raw ERA5 / IMERG `.npy` arrays |
 
 ## Reproducing the results
 
 ```bash
-# from the repository root
-export PYTHONPATH=$PWD/src
+# from the repository root — no PYTHONPATH needed, paths are auto-resolved
 
-# Metric tables  ->  results/*.csv
-python scripts/reeval_full_01deg.py
-python scripts/reeval_categorical_01deg.py
-
-# Figures  ->  figures/*.pdf
+# Figures (use only results/arrays_01deg.npz, no GPU)  ->  figures/*.pdf
 python scripts/make_figures_pubstyle_01deg.py
-python scripts/make_fig1_domain.py
 python scripts/make_figdry_01deg.py
 python scripts/make_figwet_01deg.py
+
+# Metric tables (need the weights from weights.zip + raw arrays)  ->  results/*.csv
+python scripts/reeval_full_01deg.py
+python scripts/reeval_categorical_01deg.py
 ```
 
-Model outputs are cached in `arrays_01deg.npz` (from Zenodo) so the figure/table scripts run
+Model outputs are cached in `arrays_01deg.npz` (from Zenodo) so the figure scripts run
 without re-running the networks.
 
 ## Citation

@@ -17,9 +17,9 @@ import matplotlib.patches as mpatches
 from scipy.ndimage import uniform_filter
 warnings.filterwarnings('ignore')
 
-RES = '/home/dsagna/corrigerOS1/results'
-FIG = '/home/dsagna/corrigerOS1/figures'; os.makedirs(FIG, exist_ok=True)
-FIGHR = '/home/dsagna/figures_highres'
+RES = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results')
+FIG = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'figures'); os.makedirs(FIG, exist_ok=True)
+FIGHR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results')
 
 LAT_MIN, LAT_MAX = 4.0, 23.0
 LON_MIN, LON_MAX = -18.0, 16.0

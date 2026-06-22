@@ -11,17 +11,17 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from sklearn.linear_model import Ridge
 warnings.filterwarnings('ignore')
-sys.path.insert(0, '/home/dsagna')
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'src'))
 import downscaling_highres as ds
 from qm_highres import MonthlyQM
 
-CKPT = '/home/dsagna/checkpoints_highres'
-OUT  = '/home/dsagna/corrigerOS1/results'
+CKPT = os.environ.get('CKPT_DIR', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'checkpoints_highres'))
+OUT  = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results')
 os.makedirs(OUT, exist_ok=True)
 THR = (5, 20, 40)
 dev = ds.device
 
-st = np.load(f'{CKPT}/norm_stats.npz')
+st = np.load(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results','norm_stats.npz'))
 mu, sigma = st['mu'], st['sigma']
 y_min, y_max = float(st['y_min']), float(st['y_max'])
 

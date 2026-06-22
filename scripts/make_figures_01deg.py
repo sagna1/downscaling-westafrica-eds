@@ -9,13 +9,13 @@ from torch.utils.data import DataLoader
 from sklearn.linear_model import Ridge
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-warnings.filterwarnings('ignore'); sys.path.insert(0,'/home/dsagna')
+warnings.filterwarnings('ignore'); sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'src'))
 import downscaling_highres as ds
 from qm_highres import MonthlyQM
 
-CKPT='/home/dsagna/checkpoints_highres'; RES='/home/dsagna/corrigerOS1/results'
-FIG='/home/dsagna/corrigerOS1/figures'; os.makedirs(FIG,exist_ok=True)
-st=np.load(f'{CKPT}/norm_stats.npz'); mu,sigma=st['mu'],st['sigma']
+CKPT=os.environ.get('CKPT_DIR', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'checkpoints_highres')); RES=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results')
+FIG=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'figures'); os.makedirs(FIG,exist_ok=True)
+st=np.load(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results','norm_stats.npz')); mu,sigma=st['mu'],st['sigma']
 y_min,y_max=float(st['y_min']),float(st['y_max']); DPY=153
 mseq=[]
 for _ in range(21):
@@ -71,7 +71,7 @@ obs=D['obs']
 perf=pd.read_csv(f'{RES}/table_perf_01deg.csv',index_col=0)
 reg =pd.read_csv(f'{RES}/table_regional_01deg.csv',index_col=0)
 mon =pd.read_csv(f'{RES}/table_monthly_01deg.csv',index_col=0)
-imp =pd.read_csv('/home/dsagna/figures_highres/channel_importance_highres.csv')
+imp =pd.read_csv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results','channel_importance_highres.csv'))
 
 def save(fig,name):
     fig.savefig(f'{FIG}/{name}.pdf',bbox_inches='tight'); fig.savefig(f'{FIG}/{name}.png',dpi=200,bbox_inches='tight'); plt.close(fig); print('  ->',name,flush=True)

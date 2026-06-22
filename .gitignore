@@ -5,6 +5,10 @@
 *.pt
 checkpoints_highres/
 checkpoints/
+# ...but keep the tiny normalisation stats needed to run the scripts
+!results/norm_stats.npz
+# Figures are committed as PDF only
+figures/*.png
 # Python
 __pycache__/
 *.pyc

@@ -8,8 +8,8 @@ import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt, matplotlib.colors as mcolors
 import cartopy.crs as ccrs, cartopy.feature as cfeature
 
-CACHE='/home/dsagna/figures_highres/publication/_cache_samples_postproc.npz'
-OUT='/home/dsagna/corrigerOS1/figures'; os.makedirs(OUT,exist_ok=True)
+CACHE=os.environ.get('SAMPLES_CACHE', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results','_cache_samples_postproc.npz'))
+OUT=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'figures'); os.makedirs(OUT,exist_ok=True)
 LAT_MIN,LAT_MAX,LON_MIN,LON_MAX=4.0,23.0,-18.0,16.0
 
 # colonnes SANS cgan_qm

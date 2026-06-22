@@ -12,10 +12,10 @@ import matplotlib.colors as mcolors
 import matplotlib.gridspec as gridspec
 import matplotlib.patches as patches
 import cartopy.crs as ccrs, cartopy.feature as cfeature
-warnings.filterwarnings('ignore'); sys.path.insert(0,'/home/dsagna')
+warnings.filterwarnings('ignore'); sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'src'))
 import downscaling_highres as ds
 
-OUT='/home/dsagna/corrigerOS1/figures'; os.makedirs(OUT,exist_ok=True)
+OUT=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'figures'); os.makedirs(OUT,exist_ok=True)
 LAT_MIN,LAT_MAX,LON_MIN,LON_MAX=4.0,23.0,-18.0,16.0
 
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'savefig.dpi':300,
@@ -31,7 +31,7 @@ for s in range(0,Y.shape[0],300):
 mean05=(acc/n).astype(np.float32)
 mean01=mean05.reshape(H//2,2,W//2,2).mean((1,3))  # (190,340)
 # oriente row0=sud comme le cache obs (origin='lower')
-o=np.load('/home/dsagna/corrigerOS1/results/arrays_01deg.npz')['obs'].mean(0)
+o=np.load(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results','arrays_01deg.npz'))['obs'].mean(0)
 if np.corrcoef(mean01[::-1].ravel(),o.ravel())[0,1] > np.corrcoef(mean01.ravel(),o.ravel())[0,1]:
     mean01=mean01[::-1]
 print('mean01 prêt, glob=%.2f mm/j'%mean01.mean(), flush=True)

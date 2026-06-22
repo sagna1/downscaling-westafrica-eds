@@ -8,8 +8,8 @@ import os, numpy as np
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-RES = '/home/dsagna/corrigerOS1/results'
-FIG = '/home/dsagna/corrigerOS1/figures'; os.makedirs(FIG, exist_ok=True)
+RES = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results')
+FIG = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'figures'); os.makedirs(FIG, exist_ok=True)
 
 D = np.load(f'{RES}/arrays_01deg.npz')
 obs = D['obs']                                   # (459,190,340)

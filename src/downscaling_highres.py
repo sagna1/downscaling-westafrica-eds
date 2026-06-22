@@ -54,8 +54,8 @@ LAT_MIN, LAT_MAX = 4.0, 23.0
 LON_MIN, LON_MAX = -18.0, 16.0
 
 # Fichiers haute résolution
-X_PATH   = '/net/nfs/ssd3/dsagna/geo_shum/X_nc_data.npy'  # (N, 18, 76, 136)
-Y_PATH   = '/net/nfs/ssd3/dsagna/geo_shum/Y_nc_data.npy'  # (N,  1, 380, 680)
+X_PATH   = os.environ.get('X_PATH', '/net/nfs/ssd3/dsagna/geo_shum/X_nc_data.npy')  # (N, 18, 76, 136)
+Y_PATH   = os.environ.get('Y_PATH', '/net/nfs/ssd3/dsagna/geo_shum/Y_nc_data.npy')  # (N,  1, 380, 680)
 CKPT_DIR = 'checkpoints_highres'
 FIG_DIR  = 'figures_highres'
 

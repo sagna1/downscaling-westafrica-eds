@@ -17,7 +17,7 @@ from torch.utils.data import DataLoader
 
 warnings.filterwarnings('ignore')
 
-sys.path.insert(0, '/home/dsagna')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from downscaling_highres import (
     load_and_preprocess, UNet, CONFIGS,
     DownscalingDataset, denorm_y,

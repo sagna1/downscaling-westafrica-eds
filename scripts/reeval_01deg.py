@@ -11,15 +11,15 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-sys.path.insert(0, '/home/dsagna')
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'src'))
 import downscaling_highres as ds   # modèle, dataset, collate, predict_all, metriques
 
-CKPT_DIR = '/home/dsagna/checkpoints_highres'
-OUT_DIR  = '/home/dsagna/corrigerOS1/results'
+CKPT_DIR = os.environ.get('CKPT_DIR', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'checkpoints_highres'))
+OUT_DIR  = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results')
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # ---- stats de normalisation EXACTES du run (sauvegardées à l'entraînement) ----
-st = np.load(os.path.join(CKPT_DIR, 'norm_stats.npz'))
+st = np.load(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results','norm_stats.npz'))
 mu, sigma = st['mu'], st['sigma']
 y_min, y_max = float(st['y_min']), float(st['y_max'])
 print(f"Stats: y_min={y_min} y_max={y_max} mu/sigma shape={mu.shape}")

@@ -1,11 +1,11 @@
 # Table catégorielle (POD/FAR/CSI à 5/20/40 mm) à 0.1° pour CBAM / CBAM+QM / cGAN
 import os, sys, warnings, numpy as np, torch, pandas as pd
 from torch.utils.data import DataLoader
-warnings.filterwarnings('ignore'); sys.path.insert(0,'/home/dsagna')
+warnings.filterwarnings('ignore'); sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'src'))
 import downscaling_highres as ds
 from qm_highres import MonthlyQM
-CKPT='/home/dsagna/checkpoints_highres'; OUT='/home/dsagna/corrigerOS1/results'
-st=np.load(f'{CKPT}/norm_stats.npz'); mu,sigma=st['mu'],st['sigma']
+CKPT=os.environ.get('CKPT_DIR', os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'checkpoints_highres')); OUT=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results')
+st=np.load(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results','norm_stats.npz')); mu,sigma=st['mu'],st['sigma']
 y_min,y_max=float(st['y_min']),float(st['y_max']); DPY=153
 mseq=[];
 for _ in range(21):

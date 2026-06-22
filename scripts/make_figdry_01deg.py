@@ -10,8 +10,8 @@ import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt, matplotlib.colors as mcolors
 import cartopy.crs as ccrs, cartopy.feature as cfeature
 
-RES='/home/dsagna/corrigerOS1/results'
-OUT='/home/dsagna/corrigerOS1/figures'; os.makedirs(OUT,exist_ok=True)
+RES=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'results')
+OUT=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'figures'); os.makedirs(OUT,exist_ok=True)
 LAT_MIN,LAT_MAX,LON_MIN,LON_MAX=4.0,23.0,-18.0,16.0
 
 D=np.load(f'{RES}/arrays_01deg.npz')
