@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the article and this repository."
+title: "Deep-learning statistical downscaling of daily precipitation over West Africa"
+authors:
+  - family-names: Sagna
+    given-names: David
+    affiliation: "LOSEC, Université Assane Seck de Ziguinchor, Senegal"
+  - family-names: Lguensat
+    given-names: Redouane
+    affiliation: "IPSL, Sorbonne Université / IRD, Paris, France"
+  - family-names: Diatta
+    given-names: Samo
+    affiliation: "LOSEC, Université Assane Seck de Ziguinchor, Senegal"
+year: 2026
+license: MIT

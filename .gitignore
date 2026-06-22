@@ -1,0 +1,12 @@
+# Large data & weights are on Zenodo, not in git
+*.npy
+*.npz
+*.pth
+*.pt
+checkpoints_highres/
+checkpoints/
+# Python
+__pycache__/
+*.pyc
+venv/
+.ipynb_checkpoints/
